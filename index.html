@@ -18,17 +18,6 @@
             overflow: hidden;
             padding: 20px;
         }
-        header {
-            background: #35424a;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
-        }
-        header h1 {
-            margin: 0;
-            text-align: center;
-        }
         .highlight {
             color: #e8491d;
         }
@@ -95,12 +84,39 @@
             margin-top: 20px;
         }
     </style>
+        <style>
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        header {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Spotlite <span class="highlight">스포츠 대회 운영 혁신 솔루션</span></h1>
-        </div>
+        <nav>
+            <div class="logo">Spotlite</div>
+        </nav>
     </header>
 
     <div class="container">
