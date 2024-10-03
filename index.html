@@ -1,284 +1,58 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotlite - 스포츠 대회 운영 혁신 솔루션</title>
+    <title>3D Rotating Cube</title>
     <style>
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            
-            margin-top: 100px;
-            padding: 2rem;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .highlight {
-            color: #e8491d;
-        }
-        .section {
-            padding: 40px 0;
-            border-bottom: 1px solid #ccc;
-        }
-        .section h2 {
-            color: #35424a;
-            margin-bottom: 20px;
-        }
-        .section h3 {
-            color: #e8491d;
-        }
-        .feature-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .feature-list li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-        .feature-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #e8491d;
-        }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 비율 */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .pricing {
-            background: #f4f4f4;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-        .cta-button {
-            display: inline-block;
-            background: #e8491d;
-            color: #ffffff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        footer {
-            background: #35424a;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
-        }
-    </style>
-    <style>
-
-        header {
-            background: linear-gradient(135deg, #0056b3, #007bff);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        nav {
+            height: 100vh;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            background-color: #f0f0f0;
+            perspective: 1000px;
         }
-
-        .brand-container {
+        .cube {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 5s infinite linear;
+        }
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid #333;
             display: flex;
+            justify-content: center;
             align-items: center;
+            font-size: 40px;
+            font-family: Arial, sans-serif;
         }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            letter-spacing: 1px;
-            margin-right: 1rem;
-        }
-
-        .slogan {
-            font-size: 0.9rem;
-            font-weight: 400;
-            opacity: 0.9;
-            border-left: 2px solid rgba(255, 255, 255, 0.5);
-            padding-left: 1rem;
-            max-width: 300px;
-        }
-
-        @media (max-width: 968px) {
-            .nav-links {
-                display: none;
-            }
-            .brand-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .slogan {
-                border-left: none;
-                padding-left: 0;
-                margin-top: 0.5rem;
-            }
+        .front  { transform: rotateY(0deg) translateZ(100px); }
+        .right  { transform: rotateY(90deg) translateZ(100px); }
+        .back   { transform: rotateY(180deg) translateZ(100px); }
+        .left   { transform: rotateY(-90deg) translateZ(100px); }
+        .top    { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+        @keyframes rotate {
+            from { transform: rotateX(0) rotateY(0); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="brand-container">
-                <a href="#" class="logo">Spotlite</a>
-                <span class="slogan">운영자, 선수만을 생각한 최고의 대회 운영 시스템</span>
-            </div>
-        </nav>
-    </header>
-
-    <div class="container">
-        <section id="intro" class="section">
-            <h2>소개</h2>
-            <p>Spotlite는 스포츠 대회 운영을 혁신적으로 개선하는 강력한 솔루션입니다. 다양한 기능을 통해 대회 운영의 효율성을 극대화하고, 참가자들의 경험을 향상시킵니다.</p>
-        </section>
-
-        <section id="feature-1" class="section">
-            <h2>1. 종목별 기능 세분화</h2>
-            <p>Spotlite는 각 스포츠 종목의 특성에 맞춘 세분화된 기능을 제공합니다.</p>
-            <ul class="feature-list">
-                <li>종목별 맞춤 점수 카운트 시스템</li>
-                <li>다양한 경기 방식 지원 (리그전, 토너먼트 등)</li>
-                <li>종목별 규칙 세분화 기능</li>
-            </ul>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <section id="feature-2" class="section">
-            <h2>2. 심판 지원 기능</h2>
-            <p>Spotlite는 심판의 업무를 효율화하기 위한 다양한 기능을 제공합니다.</p>
-            <ul class="feature-list">
-                <li>심판지 자동 작성 기능</li>
-                <li>경기 종료 즉시 PDF 형식의 심판지 생성</li>
-                <li>심판지 저장 및 인쇄 기능</li>
-                <li>실시간 점수 입력 및 수정 기능</li>
-            </ul>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <section id="feature-3" class="section">
-            <h2>3. 대회 운영자 지원 기능</h2>
-            <p>Spotlite는 대회 운영자를 위한 다양한 자동화 도구를 제공합니다.</p>
-            
-            <h3>대회 결과 자동 작성</h3>
-            <p>경기 결과가 입력되면, 전체 대회의 결과가 자동으로 집계되고 PDF로 생성됩니다. 이 기능은 운영자의 수동 작업을 줄이고, 결과 발표 시간을 단축시킵니다.</p>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            
-            <h3>코트별 실시간 진행 상황 모니터링</h3>
-            <p>운영자는 코트별 경기 배정을 전산화하여, 각 코트에서 진행 중인 경기를 실시간으로 모니터링할 수 있습니다. 이를 통해 대회 진행 상황을 한눈에 파악하고 효율적으로 관리할 수 있습니다.</p>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            
-            <h3>실시간 전체 대진 상황 자동 업데이트</h3>
-            <p>심판이 경기 결과를 입력하면, 본부석의 확인 후 다음 매치가 자동으로 업데이트됩니다. 이 기능은 대회 진행을 원활하게 하고, 참가자들에게 실시간 정보를 제공합니다.</p>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <section id="feature-4" class="section">
-            <h2>4. 선수 지원 기능</h2>
-            <p>Spotlite는 선수들의 대회 참여 경험을 향상시키기 위한 기능을 제공합니다.</p>
-            
-            <h3>상황판 제공</h3>
-            <p>선수들은 대회 현황을 한눈에 파악할 수 있는 상황판을 통해 현재 경기 진행 상황을 실시간으로 확인할 수 있습니다. 이 상황판은 인터넷 URL 하나로 전 세계에서 시청이 가능합니다.</p>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            
-            <h3>알림톡 제공</h3>
-            <p>선수와 심판은 전 경기에 대해 준비 알림톡을 받을 수 있어, 대회의 운영 시간이 약 20% 단축됩니다. 이 기능은 선수들의 경기 준비를 돕고, 대회 진행을 원활하게 합니다.</p>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <section id="feature-5" class="section">
-            <h2>5. 방송 지원 기능</h2>
-            <p>Spotlite는 대회의 방송 품질을 향상시키기 위한 기능을 제공합니다.</p>
-            <ul class="feature-list">
-                <li>유튜브 실시간 스트리밍을 위한 코트별 점수판 제공</li>
-                <li>시청자 친화적인 방송용 점수판 디자인</li>
-                <li>실시간 경기 정보 업데이트</li>
-            </ul>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wrxD7odLtjc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <section id="pricing" class="section">
-            <h2>이용 요금</h2>
-            <div class="pricing">
-                <p>선수 1인당 5천원 - 2일 이내 대회 기준</p>
-                <p>30명 선수 참가 대회: 15만원</p>
-                <p>50명 선수 참가 대회: 25만원</p>
-                <p>100명 선수 참가 대회: 50만원</p>
-                <p><em>대규모 대회나 장기 대회는 별도 협의 필요</em></p>
-            </div>
-        </section>
-
-        <section id="partnership" class="section">
-            <h2>협회 제휴 및 랭킹 시스템 구축</h2>
-            <p>Spotlite는 지역 협회와의 제휴를 통해 더욱 효율적인 대회 운영을 지원합니다. 협회 랭킹 시스템 구축에 관심이 있으시다면 지역 협회로 문의해 주세요.</p>
-            <a href="#contact" class="cta-button">문의하기</a>
-        </section>
+    <div class="cube">
+        <div class="face front">Front</div>
+        <div class="face back">Back</div>
+        <div class="face right">Right</div>
+        <div class="face left">Left</div>
+        <div class="face top">Top</div>
+        <div class="face bottom">Bottom</div>
     </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Spotlite. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctaButton = document.querySelector('.cta-button');
-            ctaButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('문의하기 기능은 현재 준비 중입니다. 곧 서비스될 예정입니다!');
-            });
-        });
-    </script>
 </body>
 </html>
